@@ -1,0 +1,23 @@
+{
+  "profiles": {
+    "uml2finished": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\ericc\\source\\repos\\uml2finished",
+      "remoteDebugEnabled": false,
+      "sqlDebugging": true,
+      "authenticationMode": "None",
+      "nativeDebugging": true,
+      "jsWebView2Debugging": false
+    },
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "fixed uml2finishedpizza": {
+      "commandName": "Project",
+      "remoteDebugEnabled": false,
+      "sqlDebugging": true,
+      "nativeDebugging": true
+    }
+  }
+}
