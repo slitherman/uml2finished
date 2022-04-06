@@ -17,11 +17,10 @@ namespace uml2finished
 
         public Dictionary<int, Order> _ItemsOrdered = new Dictionary<int, Order>();
 
-        Order firstorder = new Order(40, 0.05, 11, "cheesepizza", 40.00, "slithermangotasoloset@gmail.com", " rxknephew");
-        Order secondOrder = new Order(40, 0.05, 12, "meatlover", 40.00, "", "lachy");
-
-        Order thirdOrder = new Order(40, 0.05, 13, "slice of frozen pizza found underneath a cardboardbox inside of the stores walk in freezer", 40.00, "lachy@gmail.com", "lacy");
-        Order fourthOrder = new Order(40, 0.05, 14, "meatlover", 40.00, "lachy@gmail.com", "lachy");
+        static Order firstorder = new Order(40, 0.05, 11, "cheesepizza", 40.00, "slithermangotasoloset@gmail.com", " rxknephew");
+        static Order secondOrder = new Order(40, 0.05, 12, "meatlover", 40.00, "", "lachy");
+        static Order thirdOrder = new Order(40, 0.05, 13, "slice of frozen pizza found underneath a cardboardbox inside of the stores walk in freezer", 40.00, "lachy@gmail.com", "lacy");
+        static Order fourthOrder = new Order(40, 0.05, 14, "meatlover", 40.00, "lachy@gmail.com", "lachy");
 
 
         public Order ()
@@ -105,6 +104,11 @@ namespace uml2finished
             _ItemsOrdered.Add(13, thirdOrder);
             _ItemsOrdered.Add(14, fourthOrder);
             return _ItemsOrdered.Values.ToList();
+        }
+
+        public void Merge(Order order)
+        {
+            //order.
         }
     }
 }

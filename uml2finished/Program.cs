@@ -11,7 +11,7 @@ namespace uml2finished
     {
         private Program()
         {
-           
+            Home();
          
         }
 
@@ -35,7 +35,7 @@ namespace uml2finished
         {
             new Nestedmenu().Prompt("welcome to the menu section, you must now choose whether or not you want to idk buy a pizza or something.")
                 .Map("make your ownn pizza/ order", pizzamaker)
-           .Map(" customorder", menuChoice)
+           .Map(" look at the sub menu", menuChoice)
                 .Map("return to mainmenu", Home)
                 .Show();
             
@@ -46,8 +46,8 @@ namespace uml2finished
         {
             new Nestedmenu().Prompt("what do you want to do? make your own order/pizza, look at the menu, or return to the main menu")
                .Map("make your ownn pizza", pizzamaker)
-               .Map("choose  pizza from the menu", storemenuoptions)
-               .Map(" customorder", Home)
+               .Map("menu options", storemenuoptions)
+               .Map(" return home", Home)
                .Show();
             WriteLine("press any key to exit");
             ReadKey(true);
@@ -68,7 +68,7 @@ namespace uml2finished
         {
 
             new Nestedmenu().Prompt("what do you want to do, delete a pizza off the menu, or perhaps search for a pizza? returning back to main menu is an option too ig")
-               .Map("make your ownn pizza", deletingpizzas)
+               .Map("remove a pizza", deletingpizzas)
                .Map("search for pizzas on the menu or other nonsense", pizzasearch)
                .Map(" customorder", Home)
                .Show();
@@ -94,6 +94,7 @@ namespace uml2finished
             WriteLine("remember when choosing which pizza to delete, you must write its name, otherwise you will get an error");
             string pizzachoices = Console.ReadLine();
             if (pizzachoices == " cheesepizza")
+
             {
                 Menu.DeletePizza(44);
 
@@ -115,7 +116,7 @@ namespace uml2finished
             }
             WriteLine("congratulations you have just successfully removed one of our items from the menu");
            
-            Menu.ReadPizza(_Pizzas);
+            Menu.ReadPizza(Menu._Pizzas);
             WriteLine("press any key to return to the main menu");
             ReadKey(true);
             Home();
@@ -222,16 +223,20 @@ namespace uml2finished
 
 
           
-            void Incrementindex (  Dictionary<int, Pizza> _Pizzas, int currentindex) {
+            // void Incrementindex (  Dictionary<int, int> _Pizzas, int currentindex) {
 
-                int updatedindex;
-                _Pizzas.TryGetValue(currentindex, out updatedindex);
-                _Pizzas[currentindex] = updatedindex++;
-            }
-            
-                
+            //    int updatedindex;
+            //    _Pizzas.TryGetValue(currentindex, out updatedindex);
+            //    _Pizzas[currentindex] = ++updatedindex;
+            //}
 
-            _ItemsOrdered.Add(,customorder);
+            Order previous = null;
+            _ItemsOrdered.TryGetValue(customorder._No, out previous);
+
+            if (previous == null)
+                _ItemsOrdered.Add(1, customorder);
+            else previous.Merge(customorder);
+
             CustomerList.Add(Customers);  
          
            
