@@ -12,6 +12,14 @@ namespace uml2finished
         public int _No { get; set; }
         public double _Price { get; set; }
 
+        public List<string> Topping { get { return topping; } set { topping = value; } }
+
+        List<string> topping = new List<string>();
+
+
+
+
+
 
         public Pizza()
         {

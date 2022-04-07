@@ -27,6 +27,7 @@ namespace uml2finished
                 .Map("createpizza", menuChoice)
                 .Map("about", about)
                 .Map("menu", MenuSegway)
+                   .Map("exit", exit)
                       .Show();
 
         }
@@ -78,6 +79,7 @@ namespace uml2finished
         public static Dictionary<int, Pizza> _Pizzas = new Dictionary<int, Pizza>();
         void deletingpizzas()
         {
+            Menu newmenu = new Menu();
             WriteLine("so you have chosen to delete a pizza off of the menu");
 
             WriteLine("when choosing what you want to do, you must either write yes or yes");
@@ -93,25 +95,25 @@ namespace uml2finished
             WriteLine(" which pizza do you want to delete? the cheesepizza, the meatlover, the slice of frozen pizza underneath a cardboardbox, or the gross vegetarian pizza. ");
             WriteLine("remember when choosing which pizza to delete, you must write its name, otherwise you will get an error");
             string pizzachoices = Console.ReadLine();
-            if (pizzachoices == " cheesepizza")
+            if (pizzachoices == "cheesepizza")
 
             {
-                Menu.DeletePizza(44);
+                Menu.DeletePizza(1);
 
             }
             else if (pizzachoices == "meatlover")
             {
-                Menu.DeletePizza(45);
+                Menu.DeletePizza(2);
 
             }
             else if (pizzachoices == "slice of frozen pizza found underneath a cardboardbox inside of the stores walk in freezer")
             {
-                Menu.DeletePizza(46);
+                Menu.DeletePizza(3);
 
             }
             else if (pizzachoices == "vegetarian")
             {
-                Menu.DeletePizza(47);
+                Menu.DeletePizza(4);
 
             }
             WriteLine("congratulations you have just successfully removed one of our items from the menu");
@@ -120,6 +122,16 @@ namespace uml2finished
             WriteLine("press any key to return to the main menu");
             ReadKey(true);
             Home();
+        }
+
+        void updatepizzanumber()
+        {
+
+            Console.WriteLine(" uhmmmmmm");
+
+            
+
+
         }
 
         public static Dictionary<int, Pizza> _PizzaSearch = new Dictionary<int, Pizza>();
@@ -144,11 +156,53 @@ namespace uml2finished
             string emptystring = "";
 
 
+
+
             //Console.WriteLine(Convert.ToBase64String(Menu.SearchPizza(emptystring));  
 
             WriteLine("press any key to return to the main menu");
             ReadKey(true);
             Home();
+
+
+            void orderpizza ()
+            {
+                Menu newmenu = new Menu();
+                Pizza menupizza = new Pizza();
+
+                Console.WriteLine("wgich pizza do you want to order?");
+                Console.WriteLine("enter the number of the pizza you want to order");
+
+
+                int orderChoices = Convert.ToInt32(Console.ReadLine());
+
+                 if((orderChoices <1 && orderChoices>4))
+                if(orderChoices == "1" )
+                {
+
+                    Menu.CreatePizza(menupizza,1);
+
+                }
+                else if (orderChoices == "2")
+                {
+                    Menu.CreatePizza(menupizza, 2);
+
+                }
+                else if(orderChoices == "3")
+                {
+                    Menu.CreatePizza(menupizza, 3);
+                }
+                else if (orderChoices == "4")
+                {
+                    Menu.CreatePizza(menupizza, 4);
+                }
+
+
+                WriteLine("press any key to return to the main menu");
+                ReadKey(true);
+                Home();
+            }
+
 
 
         }
@@ -243,11 +297,13 @@ namespace uml2finished
 
             Customer.Searchcustomer(Customers);
 
-          
+          //tilføj metoder som fkes giver brugeren mulighed for at opdatere deres valg
 
             WriteLine("press any key to return to the main menu");
             ReadKey(true);
             Home();
+
+            //returner til en klasse som fremviser customers og orders eller noget idfk
         }
         void exit()
         {
