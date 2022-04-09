@@ -25,7 +25,6 @@ namespace uml2finished
         
         }
 
-
         public Customer(string name, string email)
         {
             _Email = email;
@@ -46,5 +45,15 @@ namespace uml2finished
         {
             Customers.Find(x => x.Contains(customer._Email));
         }
+
+
+        public override string ToString()
+        {
+            string obj = $"{_Name}  {_Email}";
+            return obj;
+        }
+           
+        
     }
+
 }

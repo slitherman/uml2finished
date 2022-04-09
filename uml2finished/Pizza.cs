@@ -12,9 +12,9 @@ namespace uml2finished
         public int _No { get; set; }
         public double _Price { get; set; }
 
-        public List<string> Topping { get { return topping; } set { topping = value; } }
+        public Dictionary<int,string> Topping { get; set; }
 
-        List<string> topping = new List<string>();
+      
 
 
 
@@ -24,17 +24,15 @@ namespace uml2finished
         public Pizza()
         {
 
-
         }
 
-        //lav om på ordreren af lister senere
+   
         public Pizza(int _No, string _Name, double _Price)
 
         {
             this._No = _No;
             this._Name = _Name;
             this._Price = _Price;
-
 
         }
 

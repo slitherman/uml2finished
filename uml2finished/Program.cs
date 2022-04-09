@@ -7,7 +7,7 @@ using static System.Console;
 
 namespace uml2finished
 {
-    class Program
+  public class Program
     {
         private Program()
         {
@@ -35,7 +35,7 @@ namespace uml2finished
         void MenuSegway()
         {
             new Nestedmenu().Prompt("welcome to the menu section, you must now choose whether or not you want to idk buy a pizza or something.")
-                .Map("make your ownn pizza/ order", pizzamaker)
+                .Map("make your ownn pizza", pizzamaker)
            .Map(" look at the sub menu", menuChoice)
                 .Map("return to mainmenu", Home)
                 .Show();
@@ -71,15 +71,16 @@ namespace uml2finished
             new Nestedmenu().Prompt("what do you want to do, delete a pizza off the menu, or perhaps search for a pizza? returning back to main menu is an option too ig")
                .Map("remove a pizza", deletingpizzas)
                .Map("search for pizzas on the menu or other nonsense", pizzasearch)
+                  .Map(" update something on the menu", updatepizzanumber)
+                  .Map(" order from the menu", orderpizza)
                .Map(" customorder", Home)
                .Show();
-            //ReadKey(true);
-            //Home();
+
         }
         public static Dictionary<int, Pizza> _Pizzas = new Dictionary<int, Pizza>();
         void deletingpizzas()
         {
-            Menu newmenu = new Menu();
+
             WriteLine("so you have chosen to delete a pizza off of the menu");
 
             WriteLine("when choosing what you want to do, you must either write yes or yes");
@@ -90,53 +91,81 @@ namespace uml2finished
             if (yes != "yes")
             {
                 throw new Customexception("error please enter yes ");
-
             }
             WriteLine(" which pizza do you want to delete? the cheesepizza, the meatlover, the slice of frozen pizza underneath a cardboardbox, or the gross vegetarian pizza. ");
-            WriteLine("remember when choosing which pizza to delete, you must write its name, otherwise you will get an error");
-            string pizzachoices = Console.ReadLine();
-            if (pizzachoices == "cheesepizza")
+            WriteLine("remember when choosing which pizza to remove you must enter its item number");
+            int pizzachoices = Convert.ToInt32(Console.ReadLine());
 
+            switch (pizzachoices)
             {
-                Menu.DeletePizza(1);
+                case 44:
+                    Menu.DeletePizza(44);
+                    break;
+                case 45:
+                    Menu.DeletePizza(45);
+                    break;
+                case 46:
+                    Menu.DeletePizza(46);
+                    break;
+                case 47:
+                    Menu.DeletePizza(47);
+                    break;
+                        default:
+                    throw new ArgumentOutOfRangeException("Unknown value");
 
             }
-            else if (pizzachoices == "meatlover")
-            {
-                Menu.DeletePizza(2);
 
-            }
-            else if (pizzachoices == "slice of frozen pizza found underneath a cardboardbox inside of the stores walk in freezer")
-            {
-                Menu.DeletePizza(3);
+          Menu.ReadPizza(_Pizzas);
+            WriteLine($"congratulations you have just successfully removed  one of our items from the menu");
 
-            }
-            else if (pizzachoices == "vegetarian")
-            {
-                Menu.DeletePizza(4);
+            
+            WriteLine("press any key to return to the main menu");
+            ReadKey(true);
+            Home();
+        }
+        Pizza updatepizza = new Pizza();
+        void updatepizzanumber()
+        {
+            WriteLine("so you have chosen to  update a item on the menu");
 
+            WriteLine("when choosing what you want to do, you must either write yes or yes");
+            WriteLine(" btw please remember to write  yes ");
+            WriteLine(" ¨yes¨ write yes just like that ");
+
+            string yes = Console.ReadLine();
+            if (yes != "yes")
+            {
+                throw new Customexception("error please enter yes ");
             }
-            WriteLine("congratulations you have just successfully removed one of our items from the menu");
-           
-            Menu.ReadPizza(Menu._Pizzas);
+            Console.WriteLine("update the pizza number by entering in a new number");
+            Console.WriteLine("i cant program properly because im inept, please enter a number between 1 and 2");
+            int menuchoices = Convert.ToInt32(Console.ReadLine());
+            if (menuchoices == 1)
+            {
+                Menu.UpdatePizza(1, updatepizza);
+            }
+            if (menuchoices == 2)
+            {
+                Menu.UpdatePizza(2, updatepizza);
+            }
+            if(menuchoices >2 )
+            {
+                throw new Customexception("error number was too large");
+            }
+            Console.WriteLine("congratulations you just updated an item on the menu");
             WriteLine("press any key to return to the main menu");
             ReadKey(true);
             Home();
         }
 
-        void updatepizzanumber()
-        {
-
-            Console.WriteLine(" uhmmmmmm");
-
-            
-
-
-        }
-
         public static Dictionary<int, Pizza> _PizzaSearch = new Dictionary<int, Pizza>();
         void pizzasearch()
         {
+            //counteren virker ikke helt
+            //jeg hader dictionaries
+            //orker ikke at fixe det
+            // jeg er så træt af uml 2
+
             WriteLine(" so you have chosen to search for something off of the menu");
             WriteLine("when choosing what you want to do, you must either write yes or yes");
             WriteLine(" btw please remember to write yes  ");
@@ -147,117 +176,105 @@ namespace uml2finished
             if (yes != "yes")
             {
                 throw new Customexception("error please enter yes ");
-
             }
 
+           Console.WriteLine("you search for a pizza by typing in its name");
+            var count = Menu.SearchPizza(Console.ReadLine());
+            WriteLine($"congratulations you have just successfully looked up {count} of our items");
+            WriteLine("press any key to return to the main menu");
+            ReadKey(true);
+            Home();
+        }
+        void orderpizza()
+        {
+        
+            Pizza menupizza = new Pizza();
+            Console.WriteLine("which pizza do you want to order?");
+            Console.WriteLine("enter the number of the pizza you want to order");
+            int orderChoices = Convert.ToInt32(Console.ReadLine());
+            if (orderChoices == 1)
+            {
 
-            Console.WriteLine("you search for a pizza by typing in its name");
+                Menu.CreatePizza(menupizza, 1);
+            }
+            else if (orderChoices == 2)
+            {
+                Menu.CreatePizza(menupizza, 2);
 
-            string emptystring = "";
-
-
-
-
-            //Console.WriteLine(Convert.ToBase64String(Menu.SearchPizza(emptystring));  
+            }
+            else if (orderChoices == 3)
+            {
+                Menu.CreatePizza(menupizza, 3);
+            }
+            else if (orderChoices == 4)
+            {
+                Menu.CreatePizza(menupizza, 4);
+            }
+      
+            Console.WriteLine("congratulations you have just successfully just ordered a pizza");
 
             WriteLine("press any key to return to the main menu");
             ReadKey(true);
             Home();
-
-
-            void orderpizza ()
-            {
-                Menu newmenu = new Menu();
-                Pizza menupizza = new Pizza();
-
-                Console.WriteLine("wgich pizza do you want to order?");
-                Console.WriteLine("enter the number of the pizza you want to order");
-
-
-                int orderChoices = Convert.ToInt32(Console.ReadLine());
-
-                 if((orderChoices <1 && orderChoices>4))
-                if(orderChoices == "1" )
-                {
-
-                    Menu.CreatePizza(menupizza,1);
-
-                }
-                else if (orderChoices == "2")
-                {
-                    Menu.CreatePizza(menupizza, 2);
-
-                }
-                else if(orderChoices == "3")
-                {
-                    Menu.CreatePizza(menupizza, 3);
-                }
-                else if (orderChoices == "4")
-                {
-                    Menu.CreatePizza(menupizza, 4);
-                }
-
-
-                WriteLine("press any key to return to the main menu");
-                ReadKey(true);
-                Home();
-            }
-
-
-
         }
+
+        private static Dictionary<int, string> Topping = new Dictionary<int, string>();
         private Dictionary<int, Order> _ItemsOrdered = new Dictionary<int, Order>();
         private List<Customer> CustomerList = new List<Customer>();
+        private int pizzaOrderCounter = 0;
          void pizzamaker()
         {
-            string _CommandPrompt = "youre not really creating a custom pizza, since the code is not able to do that. just name a pizza that you want us to make, its price, and its number";
-            string[] _Options = { "createpizza", "no" };
+            string _CommandPrompt = "please just make your pizza already";
+            string[] _Options = { "createpizza"};
             Keyboardmenu keyboardmenu4 = new Keyboardmenu(_CommandPrompt, _Options);
             int _SelectedIndex = keyboardmenu4.RunMenu();
-            Order customorder = new Order();
+            Order customorder = new  Order();
             Customer Customers = new Customer();
             WriteLine(" name the pizza or something");
             try
             {
-              customorder._Name = Console.ReadLine();
+                customorder._Name = Console.ReadLine();
             }
             catch (Exception)
             {
                 if (customorder._Name.Length < 0 && !string.IsNullOrWhiteSpace(customorder._Name))
                     WriteLine("you forgot to give your pizza a name ");
-
                 throw;
             }
             WriteLine(" give it a nr so that you can track it");
-            customorder._No = Int32.Parse(Console.ReadLine());
-            string input = "";
-            WriteLine("how much are you willing to pay?????????");
-
+            customorder._No = Convert.ToInt32(Console.ReadLine());
+        
+            WriteLine("a custom pizza costs 50dkk");
+            WriteLine("you are always welcome to add a tip to the total amount");               
             try
             {
-                input = Console.ReadLine();
-                customorder._Price = Int32.Parse(input);
+                    customorder._Price = Convert.ToDouble(Console.ReadLine());
+                if (customorder._Price < 50)
+                {
+                    throw new Customexception("error price cannot be lower than 50dkk");
+                }
             }
-            catch (Exception)
+            catch (Customexception)
             {
-                WriteLine($"error your input {input} wasnt a number silly, TRY AGAIN MAYBE YOU WILL GET IT RIGHT NEXT TIME ");
+                WriteLine($"error error you only paid { customorder._Price} for the pizza. pizzas cost 50dkk without an additional tip ");
+               
                 throw;
 
             }
-
             Write(" enter name:  ");
             try
             {
 
                 Customers._Name = Console.ReadLine();
             }
-            catch (Exception)
+            catch (Exception )
             {
                 if ( Customers._Name.Length < 0 && !string.IsNullOrWhiteSpace(Customers._Name))
-                    WriteLine("you forgot to give your pizza a name ");
+                    WriteLine("you forgot to enter in your name ");
 
                 throw;
             }
+         
             Write(" enter email:  ");
             try
             {
@@ -266,51 +283,89 @@ namespace uml2finished
             }
             catch (Exception)
             {
+               
                 if (Customers._Email.Length < 0 && !string.IsNullOrWhiteSpace(Customers._Name))
-                    WriteLine("you forgot to give your pizza a name ");
+                    WriteLine("you forgot to enter in your email");
 
                 throw;
-            }
+            } 
+            Console.WriteLine("do you want extra topping?");
+            Console.WriteLine("each topping will cost you an additional 5dkk");
+            Console.WriteLine("you choose the topping by writing its number");
+           int input;
+            Menu toppingmenu = new Menu(8);
+                input = Convert.ToInt32(Console.ReadLine());
+                  Menu.readtopping(Topping);
+           //meget primitiv måde at tilføje topping på
+                switch (input)
+               {
+                  case 0:
+              Console.WriteLine("you chose bellpeppers");
+                    Topping.Add(60, "bellpeppers");
+                    break;
+                   case 1:
+                  Console.WriteLine("you chose beef");
+                       Topping.Add(61, "beef");
+                     break;
+                   case 2:
+                   Console.WriteLine("you chose  cured meats");
+                       Topping.Add(62, "cured meats");
+                       break;
+                   case 3:
+                  Console.WriteLine("you chose extra mozzarella cheese ");
+                    Topping.Add(63, "extra mozzarella cheese");
+                      break;
+                case 4:
+                 Console.WriteLine("you chose chicken");
+                     Topping.Add(64, "chicken");
+                      break;
+                case 5:
+                  Console.WriteLine("you chose shiitake mushrooms");
+                    Topping.Add(65, "shiitake mushrooms");
+                    break;
+                case 6:
+                 Console.WriteLine("you chose fried tofu");
+                   Topping.Add(66, "fried tofu");
+                    break;
+                case 7:
+                   Console.WriteLine(  "you chose chili peppers");
+                       Topping.Add(67, "chili peppers");
+                       break;
+                 case 8:
+                   Console.WriteLine( "you chose olives");
+                        Topping.Add(68, "olives");
+                      break;
+                   default:
+                        throw new ArgumentOutOfRangeException("Unknown value");
 
+               }
 
-            //vil hellere have at indexen stiger linært, eller bare en sat index, i stedet for et tal
-
-
-          
-            // void Incrementindex (  Dictionary<int, int> _Pizzas, int currentindex) {
-
-            //    int updatedindex;
-            //    _Pizzas.TryGetValue(currentindex, out updatedindex);
-            //    _Pizzas[currentindex] = ++updatedindex;
-            //}
-
+            // det er meningen at koden skal merge de to lister
+            //koden virker nok stadigvæk ikke ordenligt
+            // jeg hader dictionaries
             Order previous = null;
             _ItemsOrdered.TryGetValue(customorder._No, out previous);
 
             if (previous == null)
-                _ItemsOrdered.Add(1, customorder);
+                _ItemsOrdered.Add(pizzaOrderCounter++, customorder);
             else previous.Merge(customorder);
 
-            CustomerList.Add(Customers);  
-         
-           
+            Console.WriteLine("the order");
 
-            Customer.Searchcustomer(Customers);
-
-          //tilføj metoder som fkes giver brugeren mulighed for at opdatere deres valg
+            Console.WriteLine(customorder.ToString());
+            Console.WriteLine("by the customer");
+            Console.WriteLine(Customers.ToString());
+            Console.WriteLine("has been confirmed");
 
             WriteLine("press any key to return to the main menu");
             ReadKey(true);
             Home();
-
-            //returner til en klasse som fremviser customers og orders eller noget idfk
         }
-        void exit()
+          void exit()
         {
             WriteLine("press any key to exit");
             ReadKey(true);
             Environment.Exit(0);
-            //man skal sætte 0 ind i parameteren for at informere programmet at det ikke crasher. alle andre tal er crashkoder
 
         }
     }
